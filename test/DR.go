@@ -1,10 +1,10 @@
 package main
 import (
-	"probestar/dynamicrouter"
 	"bufio"
 	"os"
 	"log"
 	"strings"
+	"github.com/probestar/DynamicRouter/dynamicrouter"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	for running {
 		data, _, _ := reader.ReadLine()
 		command := string(data)
-		index := strings.IndexAny(command, " ");
+		index := strings.IndexAny(command, " ")
 		var c, p string
 		if (index > 0) {
 			c = string(data[:index])

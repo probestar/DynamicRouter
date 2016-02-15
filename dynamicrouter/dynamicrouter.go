@@ -83,7 +83,7 @@ func (router *dynamicRouter) handleDeleteEvent(event zk.Event) {
 func (router *dynamicRouter) refresh() {
 	log.Print("Refresh " + router.config.Path())
 	router.models = map[string][]RouterModel{}
-	go func(path string) {
+	go func() {
 		children, _, e, _ := router.conn.ChildrenW(router.config.Path())
 		for _, value := range children {
 			go func(value string) {
@@ -100,5 +100,5 @@ func (router *dynamicRouter) refresh() {
 		}
 		event := <-e
 		router.handleEvent(event)
-	}(router.config.Path())
+	}()
 }
