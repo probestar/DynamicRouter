@@ -2,6 +2,7 @@ package dynamicrouter
 
 import (
 	"strings"
+	"bytes"
 )
 
 type Config struct {
@@ -22,5 +23,13 @@ func (config *Config) Address() string {
 func (config *Config) Path() string {
 	index := strings.IndexAny(config.connection, "/")
 	return string([]byte(config.connection)[index:])
+}
+
+func (config *Config) String() string {
+	var buf bytes.Buffer
+	buf.WriteString("Connection: " + config.connection)
+	buf.WriteString("; UserName: " + config.UserName)
+	buf.WriteString("; Password: " + config.Password)
+	return buf.String()
 }
 
